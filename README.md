@@ -1,4 +1,6 @@
-## @jafish/m-store
+# @jafish/m-store
+
+![https://img.shields.io/npm/v/@jafish/m-store](https://www.npmjs.com/package/@jafish/m-store)
 
 简易的状态管理库，仅有 get set subscribe
 
