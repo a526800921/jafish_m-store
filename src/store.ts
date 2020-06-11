@@ -2,13 +2,13 @@
 
 var id: number = 1
 
-export default class MStorer<T> implements Jafish.MStore<T> {
+export default class MStorer<T> implements Jafish_MStore.MStore<T> {
     readonly id: number = id++
     state: T = null
-    hooks: Array<Jafish.Callback> = []
-    updates: Array<Jafish.Update> = []
+    hooks: Array<Jafish_MStore.Callback> = []
+    updates: Array<Jafish_MStore.Update> = []
 
-    constructor(state: T, plugins?: Array<Jafish.Plugin>) {
+    constructor(state: T, plugins?: Array<Jafish_MStore.Plugin>) {
         if (!state) throw new Error('请传入初始数据')
 
         this.state = state
@@ -22,9 +22,9 @@ export default class MStorer<T> implements Jafish.MStore<T> {
     }
 
     // 设置状态
-    set(next: Jafish.State | Jafish.Next<T>): Promise<void> {
-        const newState: Jafish.State = typeof next === 'function' ? next(this.state) : next
-        const updates: Array<Jafish.Update> = []
+    set(next: Jafish_MStore.State | Jafish_MStore.Next<T>): Promise<void> {
+        const newState: Jafish_MStore.State = typeof next === 'function' ? next(this.state) : next
+        const updates: Array<Jafish_MStore.Update> = []
 
         Object.keys(newState).forEach(key => {
             const oldValue = this.state[key]
@@ -52,7 +52,7 @@ export default class MStorer<T> implements Jafish.MStore<T> {
     }
 
     // 订阅
-    subscribe(callback: Jafish.Callback): Function {
+    subscribe(callback: Jafish_MStore.Callback): Function {
         this.hooks.push(callback)
 
         return () => {
@@ -64,7 +64,7 @@ export default class MStorer<T> implements Jafish.MStore<T> {
     }
 
     // 异步通知订阅者
-    runSubscribe(datas: Array<Jafish.Update>): Promise<void> {
+    runSubscribe(datas: Array<Jafish_MStore.Update>): Promise<void> {
         this.updates.push(...datas)
 
         return Promise.resolve().then(() => {

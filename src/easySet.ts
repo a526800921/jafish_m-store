@@ -14,8 +14,8 @@ const deepNewData = (datas: Array<any>, newData = []): Array<any> => {
     return deepNewData(datas, newData)
 }
 const splitReg: RegExp = /[.[\]]/g
-const easySet: Jafish.EasySet<any> = (data) => state => {
-    const newState: Jafish.State = {}
+const easySet: Jafish_MStore.EasySet<any> = (data) => state => {
+    const newState: Jafish_MStore.State = {}
 
     Object.keys(data).forEach(key => {
         const germ = key.replace(splitReg, '-').split('-').filter(item => item)
@@ -23,7 +23,7 @@ const easySet: Jafish.EasySet<any> = (data) => state => {
         if (germ.length === 0) return
         if (germ.length === 1) return newState[germ[0]] = data[germ[0]]
 
-        const sourceDatas: Array<Jafish.EasySetSource> = []
+        const sourceDatas: Array<Jafish_MStore.EasySetSource> = []
         const result: any = germ.reduce((downState, ckey, index) => {
             // 记录原始数据
             sourceDatas.push({ k: ckey, v: downState[ckey] })
@@ -33,7 +33,7 @@ const easySet: Jafish.EasySet<any> = (data) => state => {
                 sourceDatas.splice(-1, 1, { k: ckey, v: data[key] })
 
                 const newData: Array<any> = deepNewData(sourceDatas.map(item => item.v))
-                const lastData: Jafish.State = {}
+                const lastData: Jafish_MStore.State = {}
                 // 重新赋值
                 sourceDatas.reduce((a, item) => {
                     a[item.k] = newData.shift()

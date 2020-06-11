@@ -1,4 +1,4 @@
-namespace Jafish {
+declare namespace Jafish_MStore {
     // 状态对象
     interface State {
         [key: string]: any

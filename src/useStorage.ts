@@ -20,9 +20,9 @@ const getKey = (name: string, key: string): string => `storage/${name}/${key}`
 export default class UseStorage {
    name: string
    keys: Array<string>
-   options: Jafish.PluginOptions
+   options: Jafish_MStore.PluginOptions
 
-   constructor(name: string, keys: Array<string>, options: Jafish.PluginOptions) {
+   constructor(name: string, keys: Array<string>, options: Jafish_MStore.PluginOptions) {
       this.name = name || 'default'
       this.keys = keys || []
       this.options = Object.assign({
@@ -30,11 +30,11 @@ export default class UseStorage {
       }, options || {})
    }
 
-   init(store: Jafish.MStore<any>) {
+   init(store: Jafish_MStore.MStore<any>) {
       const { useShort } = this.options
 
       // 读缓存
-      const cache: Jafish.State = this.keys.reduce((obj, key) => {
+      const cache: Jafish_MStore.State = this.keys.reduce((obj, key) => {
          const value = getItem(getKey(this.name, key), useShort)
 
          if (value !== void 0) obj[key] = value
