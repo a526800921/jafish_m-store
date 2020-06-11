@@ -6,7 +6,7 @@
 
 ### 使用
 
-```js
+```javascript
 import MStore, { UseStorage } from '@jafish/m-store'
 
 // 初始化
@@ -44,7 +44,7 @@ subscriber()
 
 设置值是同步设置的，通知订阅者是异步通知的
 
-```js
+```javascript
 store.set({ 
     test: 1,
     test2: 2,
@@ -59,7 +59,7 @@ store.set(state => ({
 
 发起订阅，当数据改变时，触发更新。返回一个取消订阅的方法
 
-```js
+```javascript
 const subscriber = store.subscribe(updates => {
     updates.forEach(item => {
         item.key
@@ -80,7 +80,7 @@ subscriber()
 
 使用 storage 进行缓存
 
-```js
+```javascript
 new MStore({
     test: 1
 }, [
@@ -101,7 +101,7 @@ new MStore({
 
 能够更加容易的进行赋值
 
-```js
+```javascript
 import MStore, { easySet } from '@jafish/m-store'
 
 // 假如有复杂类型的值
@@ -155,7 +155,7 @@ store.set(easySet({
 
 ### 实践
 
-```js
+```javascript
 import MStore, { UseStorage } from '@jafish/m-store'
 
 // 初始化
