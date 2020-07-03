@@ -32,7 +32,8 @@ export default class MStorer<T> implements Jafish_MStore.MStore<T> {
 
             if (oldValue === void 0 || newValue === void 0) return
 
-            const change = oldValue !== newValue && JSON.stringify(oldValue) !== JSON.stringify(newValue)
+            // 仅做浅比较，完全比较会消耗性能
+            const change = oldValue !== newValue/*  && JSON.stringify(oldValue) !== JSON.stringify(newValue) */
 
             if (change) {
                 updates.push({

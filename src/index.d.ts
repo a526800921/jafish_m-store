@@ -12,7 +12,7 @@ declare namespace Jafish_MStore {
     }
 
     // 订阅回调格式
-    type Callback = (updates: Array<Update>, adCb: Function) => void
+    type Callback = (updates: Array<Update>, adCb: () => Function) => void
 
     // 设置值
     type Next<T> = (state: T) => State
