@@ -6,6 +6,10 @@
 
 可以针对不同的功能分别实现各自的状态，分布式管理
 
+### 搭配
+
+[@jafish/store-in-react](https://github.com/a526800921/jafish_store-in-react) - 在 react 中使用
+
 ### 使用
 
 ```javascript
